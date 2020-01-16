@@ -20,8 +20,16 @@
     "egg-mock": "^3.21.0",
     "eslint": "^5.13.0",
     "eslint-config-egg": "^7.1.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-config-standard": "^14.1.0",
+    "eslint-plugin-node": "^11.0.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "eslint-plugin-promise": "^4.2.1",
+    "eslint-plugin-react": "^7.17.0",
+    "eslint-plugin-standard": "^4.0.1",
     "husky": "^4.0.10",
     "lint-staged": "^9.5.0",
+    "onchange": "^6.1.0",
     "prettier": "^1.19.1"
   },
   "engines": {
@@ -37,7 +45,16 @@
     "cov": "egg-bin cov",
     "lint": "eslint .",
     "ci": "npm run lint && npm run cov",
-    "autod": "autod"
+    "autod": "autod",
+    "format": "prettier --config ./.prettierrc.js --write './app/**/*.{js,jsx}'",
+    "change:format": "onchange './app/**/*.js' './app/**/*.jsx' -- prettier --write {{changed}}"
+  },
+  "lint-staged": {
+    "app/**/*.{js,jsx,less}": [
+      "prettier --tab-width 2 --write",
+      "eslint --fix",
+      "git add"
+    ]
   },
   "ci": {
     "version": "10"
@@ -47,5 +64,10 @@
     "url": ""
   },
   "author": "JunJianSyu",
-  "license": "MIT"
+  "license": "MIT",
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  }
 }
