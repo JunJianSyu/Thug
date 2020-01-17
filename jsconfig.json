@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "baseUrl": "./app/public",
+    "paths": {
+      "@/*": ["./app/public/src/*"]
+    }
+  }
+}

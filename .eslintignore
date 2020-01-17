@@ -1,1 +1,8 @@
 coverage
+test
+config
+
+/app/public/lambda/
+/app/public/scripts
+/app/public/config
+.history
